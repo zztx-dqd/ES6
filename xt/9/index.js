@@ -2,7 +2,6 @@ function log(txt) {
     console.log(txt);
 }
 
-
 /*
 var foo = 'bar';
 var baz = {foo};
