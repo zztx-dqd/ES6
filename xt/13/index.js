@@ -1,5 +1,4 @@
 function log(txt) {
-    window.document.body.innerHTML += `${txt} <br/>`;
     console.log(txt);
 }
 
@@ -88,3 +87,14 @@ log(new Set([...a, ...b]));
 log(new Set([...a].filter(n => b.has(n))));
 log(new Set([...a].filter(n => !b.has(n))));
 */
+
+
+
+let o = { test: 1 };
+let m = new Map();
+
+m.set(o, 'test');
+log(m.get(o));
+log(m.has(o));
+m.delete(o);
+log(m.has(o));
