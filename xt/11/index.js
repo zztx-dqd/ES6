@@ -151,7 +151,7 @@ var pow = n => n * n;
 log(pipe(3).double.pow.get);
 */
 
-
+/*
 var handler = {
     get(target, key) {
         
@@ -177,3 +177,106 @@ var proxy = new Proxy(target, handler);
 
 proxy._prop
 proxy._prop = 1;
+*/
+
+
+/*
+var target = function(){
+    return 'i am the target';
+}
+var handler = {
+    apply(){
+        return 'i am the proxy';
+    }
+}
+var p = new Proxy(target, handler);
+log(target());
+log(p());
+*/
+
+
+/*
+var twice = {
+    apply(target, ctx, args) {
+        return Reflect.apply(...arguments) * 2;
+    }
+}
+function sum(left, right) {
+    return left + right;
+}
+var p = new Proxy(sum, twice);
+log(p(1, 2));
+log(p.call(null, 5, 6));
+log(p.apply(null, [7, 8]));
+*/
+
+
+/*
+var handler = {
+    has(target, key){
+        if(key[0] === '_'){
+            return false;
+        }
+        return key in target;
+    }
+}
+var target = {
+    _prop: 'foo',
+    prop: 'foo'
+}
+var p = new Proxy(target, handler);
+log('_prop' in p);
+log('prop' in p);
+*/
+
+/*
+var handler = {
+    construct(target, args) {
+        log(`called: ${args.join(', ')}`);
+        return {value: args[0] * 10};
+    }
+}
+var p = new Proxy(function(){}, handler);
+log(new p(1));
+*/
+
+
+/*
+var handler = {
+    deleteProperty(target, key) {
+        invariant(key, 'delete');
+        return Reflect.deleteProperty(target, key);
+    }
+}
+function invariant(key, action) {
+    if (key[0] === '_') {
+        throw new Error(`Invalid attempt to ${action} private "${key}" property`);
+    }
+}
+var target = {
+    _prop: 'foo',
+    prop: 'foo'
+};
+var p = new Proxy(target, handler);
+delete p.prop;
+log(p);
+delete p._prop;
+*/
+
+
+var handler = {
+    enumerate(target) {
+        debugger
+        return Object.keys(target).filter(key => key[0] != '_')[Symbol.iterator]();
+    }
+}
+var target = {
+    prop: 'foo',
+    _prop: 'foo',
+    _bar: 'baz'
+}
+var p = new Proxy(target, handler);
+log(p);
+for (let key in p) {
+    log(key);
+}
