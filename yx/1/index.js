@@ -107,7 +107,53 @@
 
 // console.log([...'hello'].length)
 
+// let map=new Mao([
+//     [1,'one'],
+//     [2,'two'],
+//     [3,'three']
+// ]);
+
+// function foo(){}
+// console.log(foo.bind({}).name)
+// console.log((function(){}).bind({}).name)
 
 
+// var get1=id=>({id:'sdsds',test:'ddddd'});
+// console.log(get1());
+
+// const head=(head,...tail)=>[head,...tail];
+// console.log(head(1,2,3,4,6));
+
+// var Demo=((window)=>{
+//     var test=function(...opt){
+
+//         console.log([...opt][0].name)
+//     }
+//     test.prototype.de=function(){
+//         console.log(this)
+//     }
+//     return test;
+// })(window);
+// var s=new Demo({
+//     id:1,
+//     name:'张三'
+// });
+// s.de();
+
+
+// let [a, b, ...c] = [1, 2, 3, 4, 5, 6];
+// console
+
+//console.log([...1,2,4]==[1,2,4])
+
+
+// function test(str){
+//     console.log(...str[0].name)
+// }
+
+// test([{
+//     id:1,
+//     name:'张三'
+// }])
 
 
