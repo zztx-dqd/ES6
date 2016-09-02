@@ -156,4 +156,113 @@
 //     name:'张三'
 // }])
 
+var a={'a':'dsds'}
+var b={'b':'xzxz'}
+var c={'c':'dsadsa'}
+
+var d=Object.assign({},a,b,c)
+console.log(d)
+
+
+var size=Symbol('size');
+
+class Collection{
+    constructor(){
+        this[size]=0;
+    }
+    add(item){
+        this[this[size]]=item;
+        this[size]++;
+    }
+    static sizeOf(instance){
+        return instance[size];
+    }
+}
+
+
+var x=new Collection();
+Collection.sizeOf(x);
+
+x.add('foo');
+Collection.sizeOf(x);
+x.add('foo2');
+var s = Object.keys(x);
+var d = Object.getOwnPropertyNames(x);
+var f = Object.getOwnPropertySymbols(x);
+
+
+var obj={
+    name:'ss'
+}
+var proxy = new Proxy(obj,{
+    get(target,property){
+        if(property=='title'){
+            return 34;
+        }    
+        return target[property];
+    }
+})
+
+console.log(proxy)
+console.log(proxy.name)
+// console.log(proxy.title)
+console.log(obj.title)
+
+
+var handle={
+    constructor(target,args){
+        return new target(...args);
+    }
+}
+var obj1={};
+Object.defineProperty(obj1,'name',{
+    value:'张三'
+})
+console.log(obj1.name)
+
+var arr1=[1,3,4,6,7]
+var m=arr1.filter(function(item){
+    if(item>5){
+        return item;
+    }
+})
+
+console.log(m)
+// var p={};
+// var p1=Object.create(p)
+// var p2=new Proxy(p1,{
+//     enumerate(target){      
+//         return ['a','b'][Symbol.iterator]();
+//     }
+// });
+
+// for(var x in p2){
+    
+//     console.log(x)
+// }
+
+
+// var buf= new ArrayBuffer(32);
+// var dataView=new DataView(buf);
+// console.log(dataView.getUint8(0));
+
+// var buffer=new ArrayBuffer(12);
+
+// var x1= new Int32Array(buffer);
+// x1[0]=2;
+// console.log(x1[0])
+
+// console.log(x1)
+
+//set map
+
+var s= new Set();
+//set的成员唯一
+[2,3,4,6,4,3,5,2].map(x=>s.add(x));
+var s1=[...s].sort((a,b)=>a-b);
+console.log(s1)
+
+
+
+
 
