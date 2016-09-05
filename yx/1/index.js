@@ -262,6 +262,48 @@ var s= new Set();
 var s1=[...s].sort((a,b)=>a-b);
 console.log(s1)
 
+var s2=new Set([1,23,4,5,6,67,5,1,3,4,5,6])
+var s3=[...s2].sort((a,b)=>a-b);
+console.log(s3)
+
+//判断相等为===    返回的是dom对象
+function divs(){
+    return [...document.querySelectorAll('div')];
+}
+
+var set=new Set(divs());
+console.log(set)
+
+var ss=new Set();
+ss.add('width:"1"');
+ss.add('height:"1"');
+console.log([...ss])
+
+
+let sa=new Set(['red','green','yellow'])
+
+for(var item of sa.keys()){
+    console.log(item)
+}
+
+for(var it of sa){
+    console.log(it)
+}
+
+var arr=[1,3,5]
+for (var item in arr){ 
+    console.log(arr[item])
+}
+
+var arr1=arr.filter(x=>x>3)
+console.log(arr1)
+
+
+var a=[[1,3],[4,6]];
+var ws= new WeakSet(a);
+console.log(ws)
+
+
 
 
 
