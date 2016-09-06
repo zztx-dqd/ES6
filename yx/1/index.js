@@ -299,9 +299,106 @@ var arr1=arr.filter(x=>x>3)
 console.log(arr1)
 
 
-var a=[[1,3],[4,6]];
-var ws= new WeakSet(a);
+var a={'d':'s'};
+var ws= new WeakSet();
+ws.add(a)
 console.log(ws)
+console.log(ws.has(a))
+//console.log(ws.d)
+console.log(ws.has(a))
+
+var m = new Map();
+var o={p:'Hello World'};
+m.set(o,'content');
+console.log(m.get(o))
+m.delete(o)
+
+console.log(m.get(o))
+
+var x2=1;
+(function(){
+    console.log(x2);
+    var x2=2;
+})();
+
+
+function Animal(name){
+    this.name=name;
+    return this;
+}
+Animal.prototype.wow=function(){
+    console.log(this.name+'!wow.');
+    return this;
+}
+function Dog(name){
+    this.name=name;
+    return this;
+}
+Dog.prototype=new Animal();
+Dog.prototype.run=function(){
+    console.log(2323)
+    return this;
+}
+Dog.prototype.wow=function(){
+    console.log(this.name+'!wow.22222');
+    return this;
+}
+var s=new Dog('汪汪')
+s.wow().run();
+
+
+var wm1 = new WeakMap();
+var sa1={};
+wm1.set(sa1,1);
+wm1.get(sa1);
+console.log(wm1.get(sa1));
+
+var ss1=new Set();
+ss1.add(2)
+ss1.add(3)
+ss1.add(4)
+console.log([...ss1])
+
+var obj2={a,d,b,c}
+
+for(var key in obj2){
+    console.log(key+'1')
+}
+
+var it=makeIterator([1,2,4]);
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+
+function makeIterator(array){
+    var nextIndex=0;
+    return {
+        next:function(){
+            return nextIndex<array.length?
+            {value:array[nextIndex++],done:false}:
+            {value:undefined,done:true};
+        }
+    }
+}
+
+var mpssss=new Map();
+var sds={};
+mpssss.set(sds,{num:1});
+console.log(mpssss.get(sds).num)
+
+for(var value of mpssss){
+    document.write(JSON.stringify(value))
+}
+let obj4={
+    *[Symbol.iterator](){
+        yield 1;
+        yield 2;
+    }
+}
+console.log([...obj4])
+
+
 
 
 
